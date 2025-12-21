@@ -1,0 +1,160 @@
+---
+title: "Z-Image"
+description: "使用 Z-Image 进行高质量图像生成"
+api: "POST /v1/images/generations"
+---
+
+## 概述
+
+Z-Image 是阿里通义千问团队推出的高效图像生成模型，基于 6B 参数的单流扩散 Transformer 架构，能够生成高质量的写实图像，支持中英双语文字渲染。
+
+## 主要特点
+
+<CardGroup cols={2}>
+  <Card title="写实质量" icon="camera">
+    生成精细光影、清晰纹理和平衡构图的写实图像
+  </Card>
+  <Card title="双语文字" icon="language">
+    精准渲染中英文文字，适合海报、图形设计
+  </Card>
+  <Card title="高效架构" icon="bolt">
+    6B 参数实现媲美更大模型的输出质量
+  </Card>
+  <Card title="语义理解" icon="brain">
+    强大的世界知识和语义推理能力
+  </Card>
+</CardGroup>
+
+## 请求参数
+
+<ParamField body="model" type="string" required>
+  模型名称，固定为 `z-image`
+</ParamField>
+
+<ParamField body="prompt" type="string" required>
+  图像生成的文本描述，支持中英文
+</ParamField>
+
+<ParamField body="aspect_ratio" type="string" default="1:1">
+  图像宽高比，可选值： - `1:1` - 正方形（默认） - `16:9` - 横向宽屏 - `9:16` -
+  纵向竖屏 - `4:3` - 标准横向 - `3:4` - 标准纵向 - `3:2` - 照片横向 - `2:3` -
+  照片纵向
+</ParamField>
+
+<ParamField body="n" type="integer" default="1">
+  生成图像数量，范围 1-4
+</ParamField>
+
+## 请求示例
+
+<CodeGroup>
+
+```bash cURL
+curl -X POST "https://your-api-domain.com/v1/images/generations" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "z-image",
+    "prompt": "一只橘色的猫咪坐在窗台上，阳光透过窗户洒在它身上，温暖的午后氛围",
+    "aspect_ratio": "1:1",
+    "n": 1
+  }'
+```
+
+```python Python
+import requests
+
+response = requests.post(
+    "https://your-api-domain.com/v1/images/generations",
+    headers={
+        "Authorization": "Bearer YOUR_API_KEY",
+        "Content-Type": "application/json"
+    },
+    json={
+        "model": "z-image",
+        "prompt": "一只橘色的猫咪坐在窗台上，阳光透过窗户洒在它身上，温暖的午后氛围",
+        "aspect_ratio": "1:1",
+        "n": 1
+    }
+)
+
+result = response.json()
+print(result)
+```
+
+```javascript JavaScript
+const response = await fetch(
+  "https://your-api-domain.com/v1/images/generations",
+  {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer YOUR_API_KEY",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "z-image",
+      prompt:
+        "一只橘色的猫咪坐在窗台上，阳光透过窗户洒在它身上，温暖的午后氛围",
+      aspect_ratio: "1:1",
+      n: 1,
+    }),
+  }
+);
+
+const result = await response.json();
+console.log(result);
+```
+
+</CodeGroup>
+
+## 响应示例
+
+### 同步响应（返回任务 ID）
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "taskId": "task_z-image_1765174270120"
+  }
+}
+```
+
+### 异步结果（通过任务查询获取）
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "taskId": "task_z-image_1765174270120",
+    "state": "success",
+    "resultJson": "{\"resultUrls\":[\"https://cdn.example.com/generated/image1.png\"]}"
+  }
+}
+```
+
+## 响应状态码
+
+| 状态码 | 描述                                  |
+| ------ | ------------------------------------- |
+| 200    | 成功 - 请求已成功处理                 |
+| 401    | 未授权 - 身份验证凭据缺失或无效       |
+| 402    | 积分不足 - 账户没有足够的积分执行操作 |
+| 422    | 验证错误 - 请求参数未通过验证检查     |
+| 429    | 速率限制 - 已超过请求限制             |
+| 500    | 服务器错误 - 处理请求时发生意外错误   |
+| 501    | 生成失败 - 内容生成任务失败           |
+
+## 最佳实践
+
+<Tip>
+  **提示词建议**： - 使用详细、具体的描述获得更好的结果 -
+  包含光线、氛围、风格等细节 - 中英文混合提示词也能很好地工作
+</Tip>
+
+<Note>
+  图像生成是异步任务，提交后返回
+  `taskId`，需要通过[获取任务详情](/api-reference/common/get-task-detail)接口查询结果。
+</Note>

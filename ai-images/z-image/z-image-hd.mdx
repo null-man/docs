@@ -1,0 +1,151 @@
+---
+title: "Z-Image HD"
+description: "4K 高清图像生成，适合专业级输出"
+api: "POST /v1/images/generations"
+---
+
+## 概述
+
+Z-Image HD 是 Z-Image 系列的高清版本，专为需要 4K 分辨率输出的专业场景设计。在保持 Z-Image 核心优势的同时，提供更高分辨率和更精细的细节表现。
+
+## 主要特点
+
+<CardGroup cols={2}>
+  <Card title="4K 高清" icon="expand">
+    支持 4K 分辨率输出，细节更加丰富
+  </Card>
+  <Card title="专业品质" icon="medal">
+    适合印刷、大屏展示等专业场景
+  </Card>
+  <Card title="精细纹理" icon="eye">
+    更好的纹理细节和边缘清晰度
+  </Card>
+  <Card title="双语文字" icon="language">
+    高清文字渲染，适合海报设计
+  </Card>
+</CardGroup>
+
+## 请求参数
+
+<ParamField body="model" type="string" required>
+  模型名称，固定为 `z-image-hd`
+</ParamField>
+
+<ParamField body="prompt" type="string" required>
+  图像生成的文本描述，支持中英文
+</ParamField>
+
+<ParamField body="aspect_ratio" type="string" default="1:1">
+  图像宽高比，可选值： - `1:1` - 正方形（默认） - `16:9` - 横向宽屏 - `9:16` -
+  纵向竖屏 - `4:3` - 标准横向 - `3:4` - 标准纵向 - `3:2` - 照片横向 - `2:3` -
+  照片纵向 - `21:9` - 超宽屏
+</ParamField>
+
+<ParamField body="resolution" type="string" default="2K">
+  输出分辨率，可选值： - `1K` - 1024px - `2K` - 2048px（默认） - `4K` - 4096px
+</ParamField>
+
+<ParamField body="n" type="integer" default="1">
+  生成图像数量，范围 1-4
+</ParamField>
+
+## 请求示例
+
+<CodeGroup>
+
+```bash cURL
+curl -X POST "https://your-api-domain.com/v1/images/generations" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "z-image-hd",
+    "prompt": "专业产品摄影：一瓶高端护肤品放在大理石台面上，柔和的自然光从侧面照射，背景虚化",
+    "aspect_ratio": "4:3",
+    "resolution": "4K",
+    "n": 1
+  }'
+```
+
+```python Python
+import requests
+
+response = requests.post(
+    "https://your-api-domain.com/v1/images/generations",
+    headers={
+        "Authorization": "Bearer YOUR_API_KEY",
+        "Content-Type": "application/json"
+    },
+    json={
+        "model": "z-image-hd",
+        "prompt": "专业产品摄影：一瓶高端护肤品放在大理石台面上，柔和的自然光从侧面照射，背景虚化",
+        "aspect_ratio": "4:3",
+        "resolution": "4K",
+        "n": 1
+    }
+)
+
+result = response.json()
+print(result)
+```
+
+```javascript JavaScript
+const response = await fetch(
+  "https://your-api-domain.com/v1/images/generations",
+  {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer YOUR_API_KEY",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "z-image-hd",
+      prompt:
+        "专业产品摄影：一瓶高端护肤品放在大理石台面上，柔和的自然光从侧面照射，背景虚化",
+      aspect_ratio: "4:3",
+      resolution: "4K",
+      n: 1,
+    }),
+  }
+);
+
+const result = await response.json();
+console.log(result);
+```
+
+</CodeGroup>
+
+## 响应示例
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "taskId": "task_z-image-hd_1765174270120"
+  }
+}
+```
+
+## Z-Image 系列对比
+
+| 特性       | Z-Image | Z-Image Turbo | Z-Image HD |
+| ---------- | ------- | ------------- | ---------- |
+| 最大分辨率 | 2K      | 2K            | 4K         |
+| 生成速度   | 标准    | 极快          | 较慢       |
+| 细节精度   | 高      | 高            | 极高       |
+| 适用场景   | 通用    | 快速迭代      | 专业输出   |
+| 价格       | 标准    | 标准          | 较高       |
+
+## 最佳实践
+
+<Tip>
+  **适用场景**： - 印刷品设计（海报、画册、包装） - 大屏展示和广告牌 -
+  电商产品主图 - 需要放大查看细节的场景
+</Tip>
+
+<Warning>4K 分辨率生成时间较长，建议在生产环境中使用回调通知而非轮询。</Warning>
+
+<Note>
+  HD 版本消耗的积分较多，建议先用标准版或 Turbo 版确认效果后，再使用 HD
+  版生成最终成品。
+</Note>
