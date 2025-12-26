@@ -1,0 +1,63 @@
+---
+title: "Introduction"
+description: "AI Image Generation API Reference"
+---
+
+## Welcome
+
+Welcome to our AI Image Generation API. This documentation covers all available endpoints for generating images using various AI models.
+
+## Base URL
+
+All API requests should be made to:
+
+```
+https://api.kie.ai/api/v1
+```
+
+## Authentication
+
+All API endpoints require Bearer token authentication. Include your API key in the Authorization header:
+
+```json
+{
+  "Authorization": "Bearer YOUR_API_KEY"
+}
+```
+
+## Available Models
+
+<CardGroup cols={2}>
+  <Card
+    title="Z-Image Series"
+    icon="image"
+    href="/en/ai-images/z-image/z-image"
+  >
+    High-quality image generation with bilingual support
+  </Card>
+  <Card
+    title="Google Imagen"
+    icon="google"
+    href="/en/ai-images/google-imagen/imagen4"
+  >
+    Google's state-of-the-art image generation models
+  </Card>
+</CardGroup>
+
+## Response Format
+
+All responses follow a consistent JSON format:
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "taskId": "task_xxxxx"
+  }
+}
+```
+
+## Rate Limits
+
+API requests are subject to rate limiting. If you exceed the limit, you'll receive a 429 status code.

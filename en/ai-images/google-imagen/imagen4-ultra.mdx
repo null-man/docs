@@ -1,0 +1,50 @@
+---
+title: "Google Imagen4 Ultra"
+description: "Google Imagen4 Ultra Premium Image Generation Model API"
+---
+
+## Introduction
+
+Google Imagen4 Ultra is the flagship model in the Imagen4 series, offering the highest quality image generation for professional creative work with demanding quality requirements.
+
+## Request Example
+
+<CodeGroup>
+
+```bash cURL
+curl --request POST \
+  --url https://api.kie.ai/api/v1/jobs/createTask \
+  --header 'Authorization: Bearer <token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "model": "google/imagen4-ultra",
+    "callBackUrl": "https://your-domain.com/api/callback",
+    "input": {
+      "prompt": "An exquisite watercolor painting depicting cherry blossom trees in spring, petals drifting in the wind, misty mountains in the distance, highly artistic",
+      "negative_prompt": "",
+      "aspect_ratio": "1:1",
+      "seed": ""
+    }
+  }'
+```
+
+</CodeGroup>
+
+## Parameters
+
+| Parameter             | Type   | Required | Description                                 |
+| --------------------- | ------ | -------- | ------------------------------------------- |
+| model                 | string | Yes      | Model name, fixed as `google/imagen4-ultra` |
+| callBackUrl           | string | No       | Callback URL when task completes            |
+| input.prompt          | string | Yes      | Text description for image generation       |
+| input.negative_prompt | string | No       | Negative prompt, describes unwanted content |
+| input.aspect_ratio    | string | No       | Image aspect ratio                          |
+| input.seed            | string | No       | Random seed for reproducible results        |
+
+## Imagen4 Series Comparison
+
+| Version       | Speed  | Quality | Recommended Use                     |
+| ------------- | ------ | ------- | ----------------------------------- |
+| Imagen4 Fast  | ⚡⚡⚡ | ★★★     | Rapid iteration, prototyping        |
+| Imagen4       | ⚡⚡   | ★★★★    | Daily creation, content production  |
+| Imagen4 Ultra | ⚡     | ★★★★★   | Professional design, premium output |

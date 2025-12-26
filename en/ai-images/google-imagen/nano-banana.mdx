@@ -1,0 +1,147 @@
+---
+title: "Google Nano Banana"
+description: "Image generation model API based on Gemini 2.5 Flash Image"
+api: "POST https://api.ruxa.ai/api/v1/tasks/create"
+---
+
+<Info>
+  `google/nano-banana` uses Google's `gemini-2.5-flash-image` model internally.
+</Info>
+
+## Query Task Status
+
+After submitting a task, you can check the task progress and get the generation result through the unified query endpoint:
+
+<Card
+  title="Get Task Details"
+  icon="magnifying-glass"
+  href="/api-reference/common/get-task-detail"
+>
+  Learn how to query task status and get generation results
+</Card>
+
+<Tip>
+  In production environments, it is recommended to use the `callBackUrl`
+  parameter to receive automatic notifications when generation is complete,
+  rather than polling the status endpoint.
+</Tip>
+
+## Authorization
+
+<ParamField header="Authorization" type="string" required>
+  Bearer Token authentication. Format: `Bearer sk-xxxxxx`
+  <Expandable defaultOpen title="Details">
+    - Get API Key: Visit the [API Key Management Page](https://ruxa.ai/dashboard/api-keys) to obtain your API Key
+
+    - Usage: Add `Authorization: Bearer YOUR_API_KEY` to your request headers
+
+    - Important: Keep your API Key secure and never share it with others
+
+    - If you suspect your API Key has been compromised, reset it immediately in the management page
+
+  </Expandable>
+</ParamField>
+
+## Request Body
+
+Request body format is `application/json`.
+
+<ParamField body="model" type="string" required default="google/nano-banana">
+  Model name, must be `google/nano-banana`
+</ParamField>
+
+<ParamField body="callBackUrl" type="string">
+  Callback URL for task completion notification. The system will POST task status and results to this URL.
+
+Example: `https://your-domain.com/api/callback`
+
+</ParamField>
+
+<ParamField body="input" type="object" required>
+  Input parameters for the generation task
+  <Expandable defaultOpen title="Properties">
+    <ParamField body="input.prompt" type="string" required>
+      Text prompt for image generation
+      <Expandable defaultOpen title="Example">
+        ```
+        "A hyper-realistic tweet posted by Einstein right after completing the theory of relativity."
+        ```
+      </Expandable>
+    </ParamField>
+    <ParamField body="input.output_format" type="enum<string>" default="png">
+      Output format for generated image
+
+      Available options: `png`, `jpeg`
+    </ParamField>
+    <ParamField body="input.image_size" type="enum<string>" default="1:1">
+      Aspect ratio for generated image
+
+      Available options: `1:1`, `9:16`, `16:9`, `3:4`, `4:3`, `3:2`, `2:3`, `5:4`, `4:5`, `21:9`, `auto`
+    </ParamField>
+
+  </Expandable>
+</ParamField>
+
+## Response
+
+<ResponseField name="code" type="integer" required>
+  Response status code
+  <Expandable defaultOpen title="Status Codes">
+    - `200`: Success - Request processed successfully
+
+    - `401`: Unauthorized - Missing or invalid authentication
+
+    - `402`: Insufficient credits - Not enough credits to execute
+
+    - `404`: Not found - Resource or endpoint does not exist
+
+    - `422`: Validation error - Request parameters invalid
+
+    - `429`: Rate limited - Request frequency limit exceeded
+
+    - `500`: Server error - Unexpected failure during processing
+
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+  Response message, error description when request fails
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  <Expandable defaultOpen title="Properties">
+    <ResponseField name="data.taskId" type="string" required>
+      Task ID for querying task status
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+```bash cURL
+curl --request POST \
+  --url https://api.ruxa.ai/api/v1/tasks/create \
+  --header 'Authorization: Bearer sk-xxxxxx' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "callBackUrl": "https://your-domain.com/api/callback",
+    "input": {
+      "prompt": "A hyper-realistic tweet posted by Einstein right after completing the theory of relativity.",
+      "output_format": "png",
+      "image_size": "1:1"
+    },
+    "model": "google/nano-banana"
+  }'
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "taskId": "task_gemini-2.5-flash-image_1766304530229_cf4dafd2"
+  }
+}
+```
+</ResponseExample>

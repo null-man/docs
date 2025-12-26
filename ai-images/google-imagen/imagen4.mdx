@@ -1,0 +1,52 @@
+---
+title: "Google Imagen4"
+description: "Google Imagen4 图像生成模型 API 接口"
+---
+
+## 简介
+
+Google Imagen4 是 Google 推出的高质量文本到图像生成模型，能够根据文字描述生成精美的图像作品。
+
+## 请求示例
+
+<CodeGroup>
+
+```bash cURL
+curl --request POST \
+  --url https://api.kie.ai/api/v1/jobs/createTask \
+  --header 'Authorization: Bearer <token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "model": "google/imagen4",
+    "callBackUrl": "https://your-domain.com/api/callback",
+    "input": {
+      "prompt": "一只可爱的橘猫坐在窗台上，阳光透过窗户洒在它身上，温暖的午后氛围，高清摄影风格",
+      "negative_prompt": "",
+      "aspect_ratio": "1:1",
+      "num_images": "1",
+      "seed": ""
+    }
+  }'
+```
+
+</CodeGroup>
+
+## 参数说明
+
+| 参数                  | 类型   | 必填 | 说明                                    |
+| --------------------- | ------ | ---- | --------------------------------------- |
+| model                 | string | 是   | 模型名称，固定为 `google/imagen4`       |
+| callBackUrl           | string | 否   | 任务完成后的回调地址                    |
+| input.prompt          | string | 是   | 图像生成的文字描述                      |
+| input.negative_prompt | string | 否   | 负面提示词，描述不希望出现的内容        |
+| input.aspect_ratio    | string | 否   | 图像宽高比，如 `1:1`、`16:9`、`9:16` 等 |
+| input.num_images      | string | 否   | 生成图像数量                            |
+| input.seed            | string | 否   | 随机种子，用于复现结果                  |
+
+## 支持的宽高比
+
+- `1:1` - 正方形
+- `16:9` - 横向宽屏
+- `9:16` - 纵向竖屏
+- `4:3` - 标准横向
+- `3:4` - 标准纵向

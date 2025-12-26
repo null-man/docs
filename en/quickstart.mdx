@@ -1,0 +1,46 @@
+---
+title: "Quickstart"
+description: "Start generating images in minutes"
+---
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- An API key (get one from your dashboard)
+- A tool to make HTTP requests (curl, Postman, etc.)
+
+## Your First Request
+
+Here's a simple example to generate an image:
+
+```bash
+curl --request POST \
+  --url https://api.kie.ai/api/v1/jobs/createTask \
+  --header 'Authorization: Bearer YOUR_API_KEY' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "model": "google/imagen4-fast",
+    "callBackUrl": "https://your-domain.com/api/callback",
+    "input": {
+      "prompt": "A beautiful sunset over the ocean",
+      "aspect_ratio": "16:9"
+    }
+  }'
+```
+
+## Response
+
+You'll receive a task ID that you can use to check the status:
+
+```json
+{
+  "taskId": "task_xxxxx",
+  "status": "pending"
+}
+```
+
+## Next Steps
+
+- Explore different [image models](/en/ai-images/google-imagen/imagen4)
+- Learn about [webhooks](/en/api-reference/endpoint/webhook) for async notifications

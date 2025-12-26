@@ -1,0 +1,52 @@
+---
+title: "Google Imagen4"
+description: "Google Imagen4 Image Generation Model API"
+---
+
+## Introduction
+
+Google Imagen4 is a high-quality text-to-image generation model from Google, capable of creating stunning images from text descriptions.
+
+## Request Example
+
+<CodeGroup>
+
+```bash cURL
+curl --request POST \
+  --url https://api.kie.ai/api/v1/jobs/createTask \
+  --header 'Authorization: Bearer <token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "model": "google/imagen4",
+    "callBackUrl": "https://your-domain.com/api/callback",
+    "input": {
+      "prompt": "A cute orange cat sitting on a windowsill, sunlight streaming through the window, warm afternoon atmosphere, high-definition photography style",
+      "negative_prompt": "",
+      "aspect_ratio": "1:1",
+      "num_images": "1",
+      "seed": ""
+    }
+  }'
+```
+
+</CodeGroup>
+
+## Parameters
+
+| Parameter             | Type   | Required | Description                                    |
+| --------------------- | ------ | -------- | ---------------------------------------------- |
+| model                 | string | Yes      | Model name, fixed as `google/imagen4`          |
+| callBackUrl           | string | No       | Callback URL when task completes               |
+| input.prompt          | string | Yes      | Text description for image generation          |
+| input.negative_prompt | string | No       | Negative prompt, describes unwanted content    |
+| input.aspect_ratio    | string | No       | Image aspect ratio, e.g. `1:1`, `16:9`, `9:16` |
+| input.num_images      | string | No       | Number of images to generate                   |
+| input.seed            | string | No       | Random seed for reproducible results           |
+
+## Supported Aspect Ratios
+
+- `1:1` - Square
+- `16:9` - Landscape widescreen
+- `9:16` - Portrait vertical
+- `4:3` - Standard landscape
+- `3:4` - Standard portrait

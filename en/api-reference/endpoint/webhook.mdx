@@ -1,0 +1,32 @@
+---
+title: "Webhook"
+description: "Receive task completion notifications"
+---
+
+## Overview
+
+When you provide a `callBackUrl` in your create task request, we'll send a POST request to that URL when the task completes.
+
+## Webhook Payload
+
+```json
+{
+  "taskId": "task_xxxxx",
+  "state": "success",
+  "resultJson": "{\"resultUrls\":[\"https://cdn.example.com/image.png\"]}"
+}
+```
+
+## Webhook Headers
+
+| Header              | Description                     |
+| ------------------- | ------------------------------- |
+| Content-Type        | application/json                |
+| X-Webhook-Signature | HMAC signature for verification |
+
+## Best Practices
+
+1. Respond with 200 status code within 5 seconds
+2. Process webhook data asynchronously
+3. Implement idempotency to handle duplicate deliveries
+4. Verify webhook signatures for security

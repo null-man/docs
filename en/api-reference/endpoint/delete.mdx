@@ -1,0 +1,35 @@
+---
+title: "Delete Task"
+description: "Delete a task and its associated resources"
+api: "DELETE /jobs/deleteTask"
+---
+
+## Endpoint
+
+```
+DELETE https://api.kie.ai/api/v1/jobs/deleteTask?taskId={taskId}
+```
+
+## Query Parameters
+
+<ParamField query="taskId" type="string" required>
+  The task ID to delete
+</ParamField>
+
+## Example Request
+
+```bash
+curl --request DELETE \
+  --url 'https://api.kie.ai/api/v1/jobs/deleteTask?taskId=task_xxxxx' \
+  --header 'Authorization: Bearer <token>'
+```
+
+## Response
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": null
+}
+```

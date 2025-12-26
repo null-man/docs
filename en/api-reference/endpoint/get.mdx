@@ -1,0 +1,48 @@
+---
+title: "Get Task"
+description: "Retrieve task status and results"
+api: "GET /jobs/getTask"
+---
+
+## Endpoint
+
+```
+GET https://api.kie.ai/api/v1/jobs/getTask?taskId={taskId}
+```
+
+## Query Parameters
+
+<ParamField query="taskId" type="string" required>
+  The task ID returned from create task endpoint
+</ParamField>
+
+## Example Request
+
+```bash
+curl --request GET \
+  --url 'https://api.kie.ai/api/v1/jobs/getTask?taskId=task_xxxxx' \
+  --header 'Authorization: Bearer <token>'
+```
+
+## Response
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "taskId": "task_xxxxx",
+    "state": "success",
+    "resultJson": "{\"resultUrls\":[\"https://cdn.example.com/image.png\"]}"
+  }
+}
+```
+
+## Task States
+
+| State      | Description                 |
+| ---------- | --------------------------- |
+| pending    | Task is queued              |
+| processing | Task is being processed     |
+| success    | Task completed successfully |
+| failed     | Task failed                 |

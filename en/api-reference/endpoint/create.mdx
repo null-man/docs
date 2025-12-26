@@ -1,0 +1,54 @@
+---
+title: "Create Task"
+description: "Create a new image generation task"
+api: "POST /jobs/createTask"
+---
+
+## Endpoint
+
+```
+POST https://api.kie.ai/api/v1/jobs/createTask
+```
+
+## Request Body
+
+<ParamField body="model" type="string" required>
+  The model to use for generation (e.g., `google/imagen4`, `z-image`)
+</ParamField>
+
+<ParamField body="callBackUrl" type="string">
+  URL to receive webhook notification when task completes
+</ParamField>
+
+<ParamField body="input" type="object" required>
+  Model-specific input parameters
+</ParamField>
+
+## Example Request
+
+```bash
+curl --request POST \
+  --url https://api.kie.ai/api/v1/jobs/createTask \
+  --header 'Authorization: Bearer <token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "model": "google/imagen4",
+    "callBackUrl": "https://your-domain.com/api/callback",
+    "input": {
+      "prompt": "A beautiful sunset over the ocean",
+      "aspect_ratio": "16:9"
+    }
+  }'
+```
+
+## Response
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "taskId": "task_xxxxx"
+  }
+}
+```
