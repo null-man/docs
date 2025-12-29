@@ -38,26 +38,19 @@
                 ]
               },
               {
-                "group": "通用接口",
-                "pages": ["api-reference/common/get-task-detail"]
-              }
-            ]
-          },
-          {
-            "tab": "API 参考",
-            "groups": [
-              {
-                "group": "接口说明",
-                "pages": ["api-reference/introduction"]
+                "group": "视频系列",
+                "pages": [
+                  {
+                    "group": "Sora2",
+                    "pages": [
+                      "ai-videos/sora2/image-to-video"
+                    ]
+                  }
+                ]
               },
               {
-                "group": "任务接口",
-                "pages": [
-                  "api-reference/endpoint/create",
-                  "api-reference/endpoint/get",
-                  "api-reference/endpoint/delete",
-                  "api-reference/endpoint/webhook"
-                ]
+                "group": "通用接口",
+                "pages": ["api-reference/common/get-task-detail"]
               }
             ]
           }
@@ -87,26 +80,19 @@
                 ]
               },
               {
-                "group": "Common",
-                "pages": ["en/api-reference/common/get-task-detail"]
-              }
-            ]
-          },
-          {
-            "tab": "API Reference",
-            "groups": [
-              {
-                "group": "Introduction",
-                "pages": ["en/api-reference/introduction"]
+                "group": "Video Series",
+                "pages": [
+                  {
+                    "group": "Sora2",
+                    "pages": [
+                      "en/ai-videos/sora2/image-to-video"
+                    ]
+                  }
+                ]
               },
               {
-                "group": "Task Endpoints",
-                "pages": [
-                  "en/api-reference/endpoint/create",
-                  "en/api-reference/endpoint/get",
-                  "en/api-reference/endpoint/delete",
-                  "en/api-reference/endpoint/webhook"
-                ]
+                "group": "Common",
+                "pages": ["en/api-reference/common/get-task-detail"]
               }
             ]
           }

@@ -1,46 +1,189 @@
 ---
-title: "Quickstart"
-description: "Start generating images in minutes"
+title: "Market"
+description: "Explore and integrate cutting-edge AI models through a unified API, including image generation, video production, and audio processing."
 ---
 
-## Prerequisites
+## Welcome to Market
 
-Before you begin, make sure you have:
+Access a comprehensive collection of cutting-edge AI models through our unified API platform. Choose from the latest image generation, video production, and audio models to enhance your applications.
 
-- An API key (get one from your dashboard)
-- A tool to make HTTP requests (curl, Postman, etc.)
+## Image Models
 
-## Your First Request
+A comprehensive collection of AI models for image generation, editing, and enhancement.
 
-Here's a simple example to generate an image:
+<CardGroup cols={3}>
+  <Card title="Seedream" icon="seedling" href="/en/market/seedream/seedream">
+    Creative image generation with unique artistic styles (v4.0, v4.5)
+  </Card>
+  <Card
+    title="Grok Imagine"
+    icon="image"
+    href="/en/market/grok-imagine/text-to-image"
+  >
+    High-quality photorealistic image generation, text-to-image and upscaling
+    powered by Grok AI
+  </Card>
+  <Card title="Flux-2" icon="image" href="/en/market/flux2/pro-text-to-image">
+    Advanced text-to-image and image-to-image generation
+  </Card>
+  <Card title="Google Imagen" icon="image" href="/en/market/google/imagen4">
+    Cutting-edge image generation (Imagen4 Fast/Ultra)
+  </Card>
+  <Card
+    title="Ideogram"
+    icon="image"
+    href="/en/market/ideogram/v3-text-to-image"
+  >
+    Creative image generation with character consistency
+  </Card>
+  <Card title="Qwen" icon="image" href="/en/market/qwen/text-to-image">
+    Multilingual image generation and editing
+  </Card>
+  <Card title="Recraft" icon="image" href="/en/market/recraft/crisp-upscale">
+    Professional image upscaling and background removal
+  </Card>
+  <Card title="Topaz" icon="image" href="/en/market/topaz/image-upscale">
+    AI-powered image enhancement and upscaling
+  </Card>
+</CardGroup>
+
+## Video Models
+
+Advanced AI models for video creation, editing, and transformation from text and images.
+
+<CardGroup cols={3}>
+  <Card title="Kling" icon="play" href="/en/market/kling/v2-1-pro">
+    High-quality video generation and AI avatars (v2.1, v2.5)
+  </Card>
+  <Card
+    title="Sora2"
+    icon="play"
+    href="/en/market/sora2/sora-2-pro-text-to-video"
+  >
+    Cutting-edge video generation from text and images
+  </Card>
+  <Card
+    title="Bytedance"
+    icon="play"
+    href="/en/market/bytedance/v1-pro-text-to-video"
+  >
+    Fast and efficient video generation (v1 Pro/Lite)
+  </Card>
+  <Card
+    title="Hailuo"
+    icon="play"
+    href="/en/market/hailuo/2-3-image-to-video-pro"
+  >
+    High-quality video generation with multiple styles
+  </Card>
+  <Card
+    title="Wan"
+    icon="play"
+    href="/en/market/wan/2-2-a14b-text-to-video-turbo"
+  >
+    Advanced video generation with turbo performance
+  </Card>
+  <Card
+    title="Grok Imagine Video"
+    icon="play"
+    href="/en/market/grok-imagine/text-to-video"
+  >
+    Video generation from text and images
+  </Card>
+</CardGroup>
+
+## Audio Models
+
+AI-powered audio processing including speech synthesis, recognition, and effects.
+
+<CardGroup cols={2}>
+  <Card
+    title="ElevenLabs"
+    icon="music"
+    href="/en/market/elevenlabs/text-to-speech-turbo-2-5"
+  >
+    High-quality text-to-speech, speech-to-text, and audio isolation
+  </Card>
+  <Card title="Infinitalk" icon="music" href="/en/market/infinitalk/from-audio">
+    Advanced audio processing and voice analysis
+  </Card>
+</CardGroup>
+
+## Getting Started
+
+<Steps>
+  <Step title="Choose Your Model">
+    Select the AI model that best fits your use case from the categories above.
+  </Step>
+  <Step title="Get API Key">
+    Visit the [API Key Management Page](https://ruxa.ai/api-key) to obtain your
+    API credentials.
+  </Step>
+  <Step title="Integrate">
+    Follow the model-specific documentation to integrate the API into your
+    application.
+  </Step>
+  <Step title="Start Creating">
+    Begin generating content with your chosen AI model through simple API calls.
+  </Step>
+</Steps>
+
+## Authentication
+
+All models in the market use the same authentication method:
 
 ```bash
-curl --request POST \
-  --url https://api.kie.ai/api/v1/jobs/createTask \
-  --header 'Authorization: Bearer YOUR_API_KEY' \
-  --header 'Content-Type: application/json' \
-  --data '{
-    "model": "google/imagen4-fast",
-    "callBackUrl": "https://your-domain.com/api/callback",
-    "input": {
-      "prompt": "A beautiful sunset over the ocean",
-      "aspect_ratio": "16:9"
-    }
-  }'
+Authorization: Bearer YOUR_API_KEY
 ```
 
-## Response
+<Warning>
+  Keep your API key secure. Never expose it in client-side code or public
+  repositories.
+</Warning>
 
-You'll receive a task ID that you can use to check the status:
+## Unified API Structure
 
-```json
-{
-  "taskId": "task_xxxxx",
-  "status": "pending"
-}
+All models follow a consistent API structure for easy integration:
+
+### Create Task
+
+```bash
+POST https://api.ruxa.ai/api/v1/tasks/create
 ```
 
-## Next Steps
+### Query Task Status
 
-- Explore different [image models](/en/ai-images/google-imagen/imagen4)
-- Learn about [webhooks](/en/api-reference/endpoint/webhook) for async notifications
+```bash
+GET https://api.ruxa.ai/api/v1/tasks/query/{task_id}
+```
+
+### Callback Notifications
+
+Optional webhook callbacks notify you when tasks complete, eliminating the need for polling.
+
+<Tip>
+  Each model has unique parameters and capabilities. Refer to individual model
+  documentation for detailed specifications.
+</Tip>
+
+## Credits and Pricing
+
+Different models consume varying amounts of credits based on their computational requirements:
+
+- **Image Models**: Typically consume 10-50 credits per generation
+- **Video Models**: Typically consume 100-500 credits per generation
+- **Language Models**: Charged by token usage
+
+Check your remaining credits:
+
+```bash
+GET https://api.ruxa.ai/api/v1/user/credits
+```
+
+## Support
+
+Need help choosing the right model or integrating our APIs?
+
+- Email: [support@ruxa.ai](mailto:support@ruxa.ai)
+- Documentation: Browse model-specific guides in the navigation
+- Community: Join our Discord server for discussions and updates

@@ -1,0 +1,160 @@
+---
+title: "Sora2 Image to Video"
+description: "Transform static images into dynamic videos using the advanced Sora-2 AI model"
+---
+
+## Character Animation Integration
+
+To enhance character animation capabilities, you can use the `character_url` and `character_timestamps` parameters to create character animations:
+
+<Card
+  title="Sora2 - Characters"
+  icon="user"
+  href="/en/ai-videos/sora2/characters"
+>
+  Learn how to create character animations and obtain character_id_list for
+  integration
+</Card>
+
+## Query Task Status
+
+After submitting a task, you can check task progress and retrieve generation results through the unified query endpoint:
+
+<Card
+  title="Get Task Details"
+  icon="magnifying-glass"
+  href="/en/api-reference/common/get-task-detail"
+>
+  Learn how to query task status and retrieve generation results
+</Card>
+
+<Tip>
+  In production environments, it's recommended to use callback notifications to
+  receive automatic notifications when generation completes, rather than polling
+  the status endpoint.
+</Tip>
+
+## Related Resources
+
+<CardGroup cols={2}>
+  <Card title="Market Overview" icon="store" href="/en/quickstart">
+    Browse all available models
+  </Card>
+  <Card
+    title="Common API"
+    icon="gear"
+    href="/en/api-reference/common/get-task-detail"
+  >
+    View account credits and usage
+  </Card>
+</CardGroup>
+
+## API Reference
+
+### Request
+
+```bash
+POST https://api.ruxa.ai/api/v1/tasks/create
+```
+
+### Request Headers
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+```
+
+### Request Body Parameters
+
+| Parameter              | Type    | Required | Description                                                                                    |
+| ---------------------- | ------- | -------- | ---------------------------------------------------------------------------------------------- |
+| `model`                | string  | Yes      | Model name: `sora-2` or `sora-2-hd`                                                            |
+| `prompt`               | string  | Yes      | Video description prompt                                                                       |
+| `seconds`              | string  | No       | Video duration: `10`, `15`, `25` (pro only)                                                    |
+| `input_reference`      | file    | No       | Input reference image                                                                          |
+| `size`                 | string  | No       | Video size (see below)                                                                         |
+| `watermark`            | boolean | No       | Whether to add watermark, default no watermark                                                 |
+| `private`              | boolean | No       | Whether to hide video, true means video won't be published and can't be remixed, default false |
+| `character_url`        | string  | No       | Video URL for creating character (no real people allowed in video)                             |
+| `character_timestamps` | string  | No       | Character appearance time range in seconds, format `{start},{end}`, range 1~3 seconds          |
+| `metadata`             | string  | No       | Metadata                                                                                       |
+| `character_from_task`  | string  | No       | Completed task ID, can create character from generated task                                    |
+| `character_create`     | boolean | No       | Automatically create character from generated video after completion                           |
+| `style`                | string  | No       | Style: `winter`, `comic`, `news`                                                               |
+
+### Size Options
+
+| Value       | Description  | Note           |
+| ----------- | ------------ | -------------- |
+| `1024x1792` | HD Portrait  | sora-2-hd only |
+| `1792x1024` | HD Landscape | sora-2-hd only |
+| `720x1280`  | SD Portrait  |                |
+| `1280x720`  | SD Landscape |                |
+
+<Note>
+  Width > Height = Landscape, Width < Height = Portrait
+</Note>
+
+### Request Example
+
+```json
+{
+  "model": "sora-2",
+  "prompt": "A horse taking flight",
+  "seconds": "10",
+  "size": "1280x720",
+  "watermark": false,
+  "private": false
+}
+```
+
+### Request Example with Character Creation
+
+```json
+{
+  "model": "sora-2",
+  "prompt": "Character running on grass",
+  "seconds": "10",
+  "size": "1280x720",
+  "character_url": "https://example.com/character-video.mp4",
+  "character_timestamps": "0,3",
+  "character_create": true
+}
+```
+
+### Request Example with Style
+
+```json
+{
+  "model": "sora-2",
+  "prompt": "City street scene",
+  "seconds": "10",
+  "size": "1280x720",
+  "style": "comic"
+}
+```
+
+### Response Example
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "taskId": "task_sora-2_1765184045509"
+  }
+}
+```
+
+### Response Status Codes
+
+| Code | Description                                                  |
+| ---- | ------------------------------------------------------------ |
+| 200  | Success                                                      |
+| 401  | Unauthorized - Missing or invalid authentication credentials |
+| 402  | Insufficient credits                                         |
+| 404  | Not found                                                    |
+| 422  | Validation error - Request parameters failed validation      |
+| 429  | Rate limited                                                 |
+| 500  | Server error                                                 |
+| 501  | Generation failed                                            |

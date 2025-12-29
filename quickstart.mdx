@@ -1,80 +1,162 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: "Market"
+description: "通过统一的 API 探索并集成尖端的 AI 模型，包括图像生成、视频制作和音频处理。"
 ---
 
-## Get started in three steps
+## 欢迎来到 Market
 
-Get your documentation site running locally and make your first customization.
+通过我们的统一 API 平台访问全面的尖端 AI 模型。从最新的图像生成、视频制作和音频模型中选择，以增强您的应用程序。
 
-### Step 1: Set up your local environment
+## 图像模型
 
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+用于图像生成、编辑和增强的全面 AI 模型集合。
 
-### Step 2: Deploy your changes
-
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
-
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
-
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
-
-### Step 3: Go live
-
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
-
-## Next steps
-
-Now that you have your docs running, explore these key features:
-
-<CardGroup cols={2}>
-
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
-
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
-
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
-
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
-
+<CardGroup cols={3}>
+  <Card title="Seedream" icon="seedling" href="/market/seedream/seedream">
+    具有独特艺术风格的创意图像生成 (v4.0, v4.5)
+  </Card>
+  <Card
+    title="Grok Imagine"
+    icon="image"
+    href="/market/grok-imagine/text-to-image"
+  >
+    由 Grok AI 驱动的高质量照片级图像生成、文本生成图像和放大
+  </Card>
+  <Card title="Flux-2" icon="image" href="/market/flux2/pro-text-to-image">
+    先进的文本生成图像和图像到图像生成
+  </Card>
+  <Card title="Google Imagen" icon="image" href="/market/google/imagen4">
+    尖端的图像生成 (Imagen4 Fast/Ultra)
+  </Card>
+  <Card title="Ideogram" icon="image" href="/market/ideogram/v3-text-to-image">
+    具有角色一致性的创意图像生成
+  </Card>
+  <Card title="Qwen" icon="image" href="/market/qwen/text-to-image">
+    多语言图像生成和编辑
+  </Card>
+  <Card title="Recraft" icon="image" href="/market/recraft/crisp-upscale">
+    专业图像放大和背景移除
+  </Card>
+  <Card title="Topaz" icon="image" href="/market/topaz/image-upscale">
+    AI 驱动的图像增强和放大
+  </Card>
 </CardGroup>
 
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>
+## 视频模型
+
+从文本和图像进行视频创建、编辑和转换的高级 AI 模型。
+
+<CardGroup cols={3}>
+  <Card title="Kling" icon="play" href="/market/kling/v2-1-pro">
+    高质量视频生成和 AI 头像 (v2.1, v2.5)
+  </Card>
+  <Card title="Sora2" icon="play" href="/market/sora2/sora-2-pro-text-to-video">
+    从文本和图像进行尖端视频生成
+  </Card>
+  <Card
+    title="Bytedance"
+    icon="play"
+    href="/market/bytedance/v1-pro-text-to-video"
+  >
+    快速高效的视频生成 (v1 Pro/Lite)
+  </Card>
+  <Card title="Hailuo" icon="play" href="/market/hailuo/2-3-image-to-video-pro">
+    具有多种风格的高质量视频生成
+  </Card>
+  <Card title="Wan" icon="play" href="/market/wan/2-2-a14b-text-to-video-turbo">
+    具有涡轮性能的高级视频生成
+  </Card>
+  <Card
+    title="Grok Imagine Video"
+    icon="play"
+    href="/market/grok-imagine/text-to-video"
+  >
+    从文本和图像生成视频
+  </Card>
+</CardGroup>
+
+## 音频模型
+
+包括语音合成、识别和效果的 AI 驱动音频处理。
+
+<CardGroup cols={2}>
+  <Card
+    title="ElevenLabs"
+    icon="music"
+    href="/market/elevenlabs/text-to-speech-turbo-2-5"
+  >
+    高质量文本转语音、语音转文本和音频隔离
+  </Card>
+  <Card title="Infinitalk" icon="music" href="/market/infinitalk/from-audio">
+    高级音频处理和语音分析
+  </Card>
+</CardGroup>
+
+## 开始使用
+
+<Steps>
+  <Step title="选择您的模型">从上面的类别中选择最适合您的用例的 AI 模型。</Step>
+  <Step title="获取 API Key">
+    访问 [API Key 管理页面](https://ruxa.ai/api-key) 获取您的 API 凭据。
+  </Step>
+  <Step title="集成">按照模型特定的文档将 API 集成到您的应用程序中。</Step>
+  <Step title="开始创建">
+    通过简单的 API 调用，使用您选择的 AI 模型开始生成内容。
+  </Step>
+</Steps>
+
+## 身份验证
+
+市场中的所有模型都使用相同的身份验证方法：
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+<Warning>
+  保持您的 API key 安全。永远不要在客户端代码或公共仓库中暴露它。
+</Warning>
+
+## 统一的 API 结构
+
+所有模型都遵循一致的 API 结构以便于集成：
+
+### 创建任务
+
+```bash
+POST https://api.ruxa.ai/api/v1/tasks/create
+```
+
+### 查询任务状态
+
+```bash
+GET https://api.ruxa.ai/api/v1/tasks/query/{task_id}
+```
+
+### 回调通知
+
+可选的 webhook 回调会在任务完成时通知您，无需轮询。
+
+<Tip>每个模型都有独特的参数和功能。请参考各个模型文档以获取详细规范。</Tip>
+
+## 积分和定价
+
+不同模型根据其计算要求消耗不同的积分数量：
+
+- **图像模型**：每次生成通常消耗 10-50 积分
+- **视频模型**：每次生成通常消耗 100-500 积分
+- **语言模型**：按 token 使用量收费
+
+查看您的剩余积分：
+
+```bash
+GET https://api.ruxa.ai/api/v1/user/credits
+```
+
+## 支持
+
+需要帮助选择合适的模型或集成我们的 API？
+
+- 邮箱：[support@ruxa.ai](mailto:support@ruxa.ai)
+- 文档：在导航中浏览模型特定的指南
+- 社区：加入我们的 Discord 服务器进行讨论和更新
