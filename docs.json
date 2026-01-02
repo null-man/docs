@@ -12,6 +12,7 @@
     "light": "#07C983",
     "dark": "#0D9373"
   },
+  "excludeFiles": ["AGENTS.md"],
   "navigation": {
     "languages": [
       {
@@ -34,6 +35,13 @@
                       "ai-images/google-imagen/nano-banana-edit",
                       "ai-images/google-imagen/nano-banana-pro"
                     ]
+                  },
+                  {
+                    "group": "OpenAI",
+                    "pages": [
+                      "ai-images/openai/gpt-image-1.5",
+                      "ai-images/openai/gpt-4o-image"
+                    ]
                   }
                 ]
               },
@@ -45,12 +53,22 @@
                     "pages": [
                       "ai-videos/sora2/image-to-video"
                     ]
+                  },
+                  {
+                    "group": "Veo3",
+                    "pages": [
+                      "ai-videos/veo3/text-to-video",
+                      "ai-videos/veo3/veo3.1"
+                    ]
                   }
                 ]
               },
               {
                 "group": "通用接口",
-                "pages": ["api-reference/common/get-task-detail"]
+                "pages": [
+                  "api-reference/common/get-task-detail",
+                  "api-reference/common/get-credit"
+                ]
               }
             ]
           }

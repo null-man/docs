@@ -1,0 +1,71 @@
+---
+title: "查询余额"
+description: "查询账户积分余额"
+api: "GET https://api.ruxa.ai/api/v1/user/credit"
+---
+
+<Info>使用此端点查询当前账户的积分余额信息。</Info>
+
+## 授权
+
+<ParamField header="Authorization" type="string" required>
+  Bearer Token 认证。格式：`Bearer sk-xxxxxx`
+</ParamField>
+
+## 响应
+
+<ResponseField name="code" type="integer" required>
+  响应状态码
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+  响应消息
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  <Expandable defaultOpen title="子属性">
+    <ResponseField name="data.balance" type="number" required>
+      账户余额
+    </ResponseField>
+    <ResponseField name="data.balance_raw" type="integer" required>
+      原始余额（整数形式）
+    </ResponseField>
+    <ResponseField name="data.token_name" type="string" required>
+      Token 名称
+    </ResponseField>
+    <ResponseField name="data.type" type="string" required>
+      账户类型
+    </ResponseField>
+    <ResponseField name="data.unlimited" type="boolean" required>
+      是否为无限额度账户
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl --request GET \
+  --url https://api.ruxa.ai/api/v1/user/credit \
+  --header 'Authorization: Bearer sk-xxxxxx'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "balance": 100.5,
+    "balance_raw": 50250,
+    "token_name": "API Token",
+    "type": "balance",
+    "unlimited": false
+  }
+}
+```
+
+</ResponseExample>

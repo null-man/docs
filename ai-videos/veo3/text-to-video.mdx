@@ -1,11 +1,11 @@
 ---
-title: "Google Nano Banana"
-description: "基于 Gemini 2.5 Flash Image 的图像生成模型 API 接口"
+title: "Veo3"
+description: "Google Veo3 视频生成模型 API 接口"
 api: "POST https://api.ruxa.ai/api/v1/tasks/create"
 ---
 
 <Info>
-  `google/nano-banana` 底层调用的是 Google 的 `gemini-2.5-flash-image` 模型。
+  `veo3` 底层调用的是 Google 的 Veo3 视频生成模型，支持文生视频和图生视频。
 </Info>
 
 ## 查询任务状态
@@ -45,8 +45,8 @@ api: "POST https://api.ruxa.ai/api/v1/tasks/create"
 
 请求体格式为 `application/json`。
 
-<ParamField body="model" type="string" required default="google/nano-banana">
-  模型名称，固定为 `google/nano-banana`
+<ParamField body="model" type="string" required default="veo3">
+  模型名称，固定为 `veo3`
 </ParamField>
 
 <ParamField body="callBackUrl" type="string">
@@ -60,30 +60,34 @@ api: "POST https://api.ruxa.ai/api/v1/tasks/create"
   生成任务的输入参数
   <Expandable defaultOpen title="子属性">
     <ParamField body="input.prompt" type="string" required>
-      用于图像生成的文本提示词
+      用于视频生成的文本提示词
       <Expandable defaultOpen title="示例">
         ```
-        "爱因斯坦刚刚完成相对论后发布的一条超写实风格的推文。"
+        "让画面动起来"
         ```
       </Expandable>
     </ParamField>
-    <ParamField body="input.output_format" type="enum<string>" default="png">
-      生成图像的输出格式
-
-      可用选项：`png`, `jpeg`
-    </ParamField>
-    <ParamField body="input.size" type="enum<string>" default="1:1">
-      生成图像的尺寸比例
-
-      可用选项：`1:1`, `9:16`, `16:9`, `3:4`, `4:3`, `3:2`, `2:3`, `5:4`, `4:5`, `21:9`, `auto`
-    </ParamField>
-    <ParamField body="input.image" type="string">
-      参考图片的 URL 地址（用于图生图场景）
+    <ParamField body="input.input_reference_url" type="string">
+      参考图片的 URL 地址（用于图生视频场景）
       <Expandable defaultOpen title="示例">
         ```
         "https://example.com/your-image.png"
         ```
       </Expandable>
+    </ParamField>
+    <ParamField body="input.seconds" type="string" default="10">
+      生成视频的时长（秒）
+    </ParamField>
+    <ParamField body="input.aspect_ratio" type="enum<string>" default="16:9">
+      生成视频的宽高比
+
+      可用选项：`16:9`, `9:16`, `1:1`
+    </ParamField>
+    <ParamField body="input.enhance_prompt" type="boolean" default="true">
+      是否增强提示词
+    </ParamField>
+    <ParamField body="input.enable_upsample" type="boolean" default="false">
+      是否启用超分辨率
     </ParamField>
 
   </Expandable>
@@ -132,12 +136,14 @@ curl --request POST \
   --data '{
     "callBackUrl": "https://your-domain.com/api/callback",
     "input": {
-      "prompt": "把背景变成像素风",
-      "output_format": "png",
-      "size": "16:9",
-      "image": "https://example.com/your-image.png"
+      "prompt": "让画面动起来",
+      "input_reference_url": "https://example.com/your-image.png",
+      "seconds": "10",
+      "aspect_ratio": "16:9",
+      "enhance_prompt": true,
+      "enable_upsample": false
     },
-    "model": "google/nano-banana"
+    "model": "veo3"
   }'
 ```
 </RequestExample>
@@ -148,7 +154,7 @@ curl --request POST \
   "code": 200,
   "message": "success",
   "data": {
-    "taskId": "task_gemini-2.5-flash-image_1766304530229_cf4dafd2"
+    "taskId": "task_veo3_1766304530229_cf4dafd2"
   }
 }
 ```

@@ -1,12 +1,10 @@
 ---
-title: "Google Nano Banana"
-description: "基于 Gemini 2.5 Flash Image 的图像生成模型 API 接口"
+title: "GPT-4o Image"
+description: "基于 OpenAI GPT-4o 的图像生成模型 API 接口"
 api: "POST https://api.ruxa.ai/api/v1/tasks/create"
 ---
 
-<Info>
-  `google/nano-banana` 底层调用的是 Google 的 `gemini-2.5-flash-image` 模型。
-</Info>
+<Info>`gpt-4o-image` 底层调用的是 OpenAI 的 `gpt-4o` 图像生成模型。</Info>
 
 ## 查询任务状态
 
@@ -45,8 +43,8 @@ api: "POST https://api.ruxa.ai/api/v1/tasks/create"
 
 请求体格式为 `application/json`。
 
-<ParamField body="model" type="string" required default="google/nano-banana">
-  模型名称，固定为 `google/nano-banana`
+<ParamField body="model" type="string" required default="gpt-4o-image">
+  模型名称，固定为 `gpt-4o-image`
 </ParamField>
 
 <ParamField body="callBackUrl" type="string">
@@ -63,14 +61,9 @@ api: "POST https://api.ruxa.ai/api/v1/tasks/create"
       用于图像生成的文本提示词
       <Expandable defaultOpen title="示例">
         ```
-        "爱因斯坦刚刚完成相对论后发布的一条超写实风格的推文。"
+        "背景变成像素风"
         ```
       </Expandable>
-    </ParamField>
-    <ParamField body="input.output_format" type="enum<string>" default="png">
-      生成图像的输出格式
-
-      可用选项：`png`, `jpeg`
     </ParamField>
     <ParamField body="input.size" type="enum<string>" default="1:1">
       生成图像的尺寸比例
@@ -132,12 +125,11 @@ curl --request POST \
   --data '{
     "callBackUrl": "https://your-domain.com/api/callback",
     "input": {
-      "prompt": "把背景变成像素风",
-      "output_format": "png",
-      "size": "16:9",
+      "prompt": "背景变成像素风",
+      "size": "2:3",
       "image": "https://example.com/your-image.png"
     },
-    "model": "google/nano-banana"
+    "model": "gpt-4o-image"
   }'
 ```
 </RequestExample>
@@ -148,7 +140,7 @@ curl --request POST \
   "code": 200,
   "message": "success",
   "data": {
-    "taskId": "task_gemini-2.5-flash-image_1766304530229_cf4dafd2"
+    "taskId": "task_gpt-4o-image_1766304530229_cf4dafd2"
   }
 }
 ```

@@ -1,12 +1,10 @@
 ---
-title: "Google Nano Banana"
-description: "基于 Gemini 2.5 Flash Image 的图像生成模型 API 接口"
+title: "GPT Image 1.5"
+description: "基于 OpenAI GPT-4o 的图像生成模型 API 接口"
 api: "POST https://api.ruxa.ai/api/v1/tasks/create"
 ---
 
-<Info>
-  `google/nano-banana` 底层调用的是 Google 的 `gemini-2.5-flash-image` 模型。
-</Info>
+<Info>`gpt-image-1.5` 底层调用的是 OpenAI 的图像生成模型。</Info>
 
 ## 查询任务状态
 
@@ -45,8 +43,8 @@ api: "POST https://api.ruxa.ai/api/v1/tasks/create"
 
 请求体格式为 `application/json`。
 
-<ParamField body="model" type="string" required default="google/nano-banana">
-  模型名称，固定为 `google/nano-banana`
+<ParamField body="model" type="string" required default="gpt-image-1.5">
+  模型名称，固定为 `gpt-image-1.5`
 </ParamField>
 
 <ParamField body="callBackUrl" type="string">
@@ -63,19 +61,19 @@ api: "POST https://api.ruxa.ai/api/v1/tasks/create"
       用于图像生成的文本提示词
       <Expandable defaultOpen title="示例">
         ```
-        "爱因斯坦刚刚完成相对论后发布的一条超写实风格的推文。"
+        "背景变成像素风"
         ```
       </Expandable>
-    </ParamField>
-    <ParamField body="input.output_format" type="enum<string>" default="png">
-      生成图像的输出格式
-
-      可用选项：`png`, `jpeg`
     </ParamField>
     <ParamField body="input.size" type="enum<string>" default="1:1">
       生成图像的尺寸比例
 
       可用选项：`1:1`, `9:16`, `16:9`, `3:4`, `4:3`, `3:2`, `2:3`, `5:4`, `4:5`, `21:9`, `auto`
+    </ParamField>
+    <ParamField body="input.quality" type="enum<string>" default="medium">
+      生成图像的质量
+
+      可用选项：`low`, `medium`, `high`
     </ParamField>
     <ParamField body="input.image" type="string">
       参考图片的 URL 地址（用于图生图场景）
@@ -132,12 +130,12 @@ curl --request POST \
   --data '{
     "callBackUrl": "https://your-domain.com/api/callback",
     "input": {
-      "prompt": "把背景变成像素风",
-      "output_format": "png",
-      "size": "16:9",
+      "prompt": "背景变成像素风",
+      "size": "2:3",
+      "quality": "medium",
       "image": "https://example.com/your-image.png"
     },
-    "model": "google/nano-banana"
+    "model": "gpt-image-1.5"
   }'
 ```
 </RequestExample>
@@ -148,7 +146,7 @@ curl --request POST \
   "code": 200,
   "message": "success",
   "data": {
-    "taskId": "task_gemini-2.5-flash-image_1766304530229_cf4dafd2"
+    "taskId": "task_gpt-image-1.5_1766304530229_cf4dafd2"
   }
 }
 ```

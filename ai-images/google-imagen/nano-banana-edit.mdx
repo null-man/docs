@@ -78,14 +78,16 @@ api: "POST https://api.ruxa.ai/api/v1/tasks/create"
 
       可用选项：`png`, `jpeg`
     </ParamField>
-    <ParamField body="input.image_size" type="enum<string>" required default="1:1">
+    <ParamField body="input.size" type="enum<string>" default="1:1">
       生成图像的尺寸比例
+
+      可用选项：`1:1`, `9:16`, `16:9`, `3:4`, `4:3`, `3:2`, `2:3`, `5:4`, `4:5`, `21:9`, `auto`
     </ParamField>
-    <ParamField body="input.image_urls" type="string[]" required>
-      需要编辑的原始图像 URL 数组
+    <ParamField body="input.image" type="string" required>
+      需要编辑的原始图像 URL
       <Expandable defaultOpen title="示例">
-        ```json
-        ["https://example.com/your-image.png"]
+        ```
+        "https://example.com/your-image.png"
         ```
       </Expandable>
     </ParamField>
@@ -138,8 +140,8 @@ curl --request POST \
     "input": {
       "prompt": "把背景变成像素风",
       "output_format": "png",
-      "image_size": "1:1",
-      "image_urls": ["https://example.com/your-image.png"]
+      "size": "16:9",
+      "image": "https://example.com/your-image.png"
     },
     "model": "google/nano-banana-edit"
   }'
