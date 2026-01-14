@@ -23,7 +23,7 @@ After submitting a task, you can check the task progress and get the generation 
 </Card>
 
 <Tip>
-  In production environments, it is recommended to use the `callBackUrl`
+  In production environments, it is recommended to use the `callback_url`
   parameter to receive automatic notifications when generation is complete,
   rather than polling the status endpoint.
 </Tip>
@@ -57,7 +57,7 @@ Request body format is `application/json`.
   Model name, must be `google/nano-banana-pro`
 </ParamField>
 
-<ParamField body="callBackUrl" type="string" required>
+<ParamField body="callback_url" type="string" required>
   Callback URL for task completion notification. The system will POST task status and results to this URL.
 
 Example: `https://your-domain.com/api/callback`
@@ -143,7 +143,7 @@ curl --request POST \
   --header 'Authorization: Bearer sk-xxxxxx' \
   --header 'Content-Type: application/json' \
   --data '{
-    "callBackUrl": "https://your-domain.com/api/callback",
+    "callback_url": "https://your-domain.com/api/callback",
     "input": {
       "prompt": "Turn this photo into a bobblehead: slightly enlarge the head, keep the face accurate, cartoonize the body. [Place it on a bookshelf].",
       "image_input": ["https://example.com/your-image.png"],

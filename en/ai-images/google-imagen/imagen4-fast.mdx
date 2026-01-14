@@ -18,7 +18,7 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --data '{
     "model": "google/imagen4-fast",
-    "callBackUrl": "https://your-domain.com/api/callback",
+    "callback_url": "https://your-domain.com/api/callback",
     "input": {
       "prompt": "A cinematic city nightscape, neon lights reflecting on rain-soaked streets, cyberpunk style, high contrast",
       "negative_prompt": "",
@@ -35,7 +35,7 @@ curl --request POST \
 | Parameter             | Type   | Required | Description                                    |
 | --------------------- | ------ | -------- | ---------------------------------------------- |
 | model                 | string | Yes      | Model name, fixed as `google/imagen4-fast`     |
-| callBackUrl           | string | No       | Callback URL when task completes               |
+| callback_url          | string | No       | Callback URL when task completes               |
 | input.prompt          | string | Yes      | Text description for image generation          |
 | input.negative_prompt | string | No       | Negative prompt, describes unwanted content    |
 | input.aspect_ratio    | string | No       | Image aspect ratio, e.g. `1:1`, `16:9`, `9:16` |

@@ -4,12 +4,11 @@ description: "查询异步任务的状态和结果"
 api: "GET https://api.ruxa.ai/api/v1/tasks/query/{taskId}"
 ---
 
-<Info>
-  使用此端点查询通过 API 创建的任何异步任务的状态和结果。
-</Info>
+<Info>使用此端点查询通过 API 创建的任何异步任务的状态和结果。</Info>
 
 <Tip>
-  生产环境中，建议使用 callBackUrl 参数接收生成完成的自动通知，而非轮询状态端点。
+  生产环境中，建议使用 callback_url
+  参数接收生成完成的自动通知，而非轮询状态端点。
 </Tip>
 
 ## 授权
@@ -40,13 +39,13 @@ api: "GET https://api.ruxa.ai/api/v1/tasks/query/{taskId}"
 
 ## 任务状态说明
 
-| 状态 | 描述 |
-| --- | --- |
-| waiting | 任务已排队等待处理 |
-| queuing | 任务在处理队列中 |
-| generating | 任务正在处理中 |
-| success | 任务成功完成 |
-| fail | 任务失败 |
+| 状态       | 描述               |
+| ---------- | ------------------ |
+| waiting    | 任务已排队等待处理 |
+| queuing    | 任务在处理队列中   |
+| generating | 任务正在处理中     |
+| success    | 任务成功完成       |
+| fail       | 任务失败           |
 
 <RequestExample>
 

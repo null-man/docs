@@ -21,7 +21,7 @@ After submitting a task, you can check the task progress and get the generation 
 </Card>
 
 <Tip>
-  In production environments, it is recommended to use the `callBackUrl`
+  In production environments, it is recommended to use the `callback_url`
   parameter to receive automatic notifications when generation is complete,
   rather than polling the status endpoint.
 </Tip>
@@ -50,7 +50,7 @@ Request body format is `application/json`.
   Model name, must be `google/nano-banana`
 </ParamField>
 
-<ParamField body="callBackUrl" type="string">
+<ParamField body="callback_url" type="string">
   Callback URL for task completion notification. The system will POST task status and results to this URL.
 
 Example: `https://your-domain.com/api/callback`
@@ -123,11 +123,12 @@ curl --request POST \
   --header 'Authorization: Bearer sk-xxxxxx' \
   --header 'Content-Type: application/json' \
   --data '{
-    "callBackUrl": "https://your-domain.com/api/callback",
+    "callback_url": "https://your-domain.com/api/callback",
     "input": {
       "prompt": "A hyper-realistic tweet posted by Einstein right after completing the theory of relativity.",
       "output_format": "png",
-      "image_size": "1:1"
+      "aspect_ratio": "16:9",
+      "image_input": ["https://file.aiquickdraw.com/custom-page/akr/section-images/1756223420389w8xa2jfe.png"]
     },
     "model": "google/nano-banana"
   }'

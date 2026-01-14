@@ -16,7 +16,7 @@ POST https://api.kie.ai/api/v1/jobs/createTask
   The model to use for generation (e.g., `google/imagen4`, `z-image`)
 </ParamField>
 
-<ParamField body="callBackUrl" type="string">
+<ParamField body="callback_url" type="string">
   URL to receive webhook notification when task completes
 </ParamField>
 
@@ -33,7 +33,7 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --data '{
     "model": "google/imagen4",
-    "callBackUrl": "https://your-domain.com/api/callback",
+    "callback_url": "https://your-domain.com/api/callback",
     "input": {
       "prompt": "A beautiful sunset over the ocean",
       "aspect_ratio": "16:9"

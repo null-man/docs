@@ -18,7 +18,7 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --data '{
     "model": "google/imagen4-ultra",
-    "callBackUrl": "https://your-domain.com/api/callback",
+    "callback_url": "https://your-domain.com/api/callback",
     "input": {
       "prompt": "An exquisite watercolor painting depicting cherry blossom trees in spring, petals drifting in the wind, misty mountains in the distance, highly artistic",
       "negative_prompt": "",
@@ -35,7 +35,7 @@ curl --request POST \
 | Parameter             | Type   | Required | Description                                 |
 | --------------------- | ------ | -------- | ------------------------------------------- |
 | model                 | string | Yes      | Model name, fixed as `google/imagen4-ultra` |
-| callBackUrl           | string | No       | Callback URL when task completes            |
+| callback_url          | string | No       | Callback URL when task completes            |
 | input.prompt          | string | Yes      | Text description for image generation       |
 | input.negative_prompt | string | No       | Negative prompt, describes unwanted content |
 | input.aspect_ratio    | string | No       | Image aspect ratio                          |

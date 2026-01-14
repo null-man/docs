@@ -5,11 +5,13 @@ api: "GET https://api.ruxa.ai/api/v1/tasks/query/{taskId}"
 ---
 
 <Info>
-  Use this endpoint to query the status and results of any async task created via the API.
+  Use this endpoint to query the status and results of any async task created
+  via the API.
 </Info>
 
 <Tip>
-  In production, use the callBackUrl parameter to receive automatic notifications rather than polling.
+  In production, use the callback_url parameter to receive automatic
+  notifications rather than polling.
 </Tip>
 
 ## Authorization
@@ -40,13 +42,13 @@ api: "GET https://api.ruxa.ai/api/v1/tasks/query/{taskId}"
 
 ## Task Status
 
-| Status | Description |
-| --- | --- |
-| waiting | Task queued for processing |
-| queuing | Task in processing queue |
-| generating | Task is being processed |
-| success | Task completed successfully |
-| fail | Task failed |
+| Status     | Description                 |
+| ---------- | --------------------------- |
+| waiting    | Task queued for processing  |
+| queuing    | Task in processing queue    |
+| generating | Task is being processed     |
+| success    | Task completed successfully |
+| fail       | Task failed                 |
 
 <RequestExample>
 

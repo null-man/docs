@@ -18,7 +18,7 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --data '{
     "model": "google/imagen4",
-    "callBackUrl": "https://your-domain.com/api/callback",
+    "callback_url": "https://your-domain.com/api/callback",
     "input": {
       "prompt": "A cute orange cat sitting on a windowsill, sunlight streaming through the window, warm afternoon atmosphere, high-definition photography style",
       "negative_prompt": "",
@@ -36,7 +36,7 @@ curl --request POST \
 | Parameter             | Type   | Required | Description                                    |
 | --------------------- | ------ | -------- | ---------------------------------------------- |
 | model                 | string | Yes      | Model name, fixed as `google/imagen4`          |
-| callBackUrl           | string | No       | Callback URL when task completes               |
+| callback_url          | string | No       | Callback URL when task completes               |
 | input.prompt          | string | Yes      | Text description for image generation          |
 | input.negative_prompt | string | No       | Negative prompt, describes unwanted content    |
 | input.aspect_ratio    | string | No       | Image aspect ratio, e.g. `1:1`, `16:9`, `9:16` |

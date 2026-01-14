@@ -22,7 +22,7 @@ api: "POST https://api.ruxa.ai/api/v1/tasks/create"
 </Card>
 
 <Tip>
-  生产环境中，建议使用 `callBackUrl`
+  生产环境中，建议使用 `callback_url`
   参数接收生成完成的自动通知，而非轮询状态端点。
 </Tip>
 
@@ -55,7 +55,7 @@ api: "POST https://api.ruxa.ai/api/v1/tasks/create"
   模型名称，固定为 `google/nano-banana-pro`
 </ParamField>
 
-<ParamField body="callBackUrl" type="string" required>
+<ParamField body="callback_url" type="string" required>
   任务完成后的回调地址。系统会向该 URL POST 任务状态与结果。
 
 示例：`https://your-domain.com/api/callback`
@@ -141,7 +141,7 @@ curl --request POST \
   --header 'Authorization: Bearer sk-xxxxxx' \
   --header 'Content-Type: application/json' \
   --data '{
-    "callBackUrl": "https://your-domain.com/api/callback",
+    "callback_url": "https://your-domain.com/api/callback",
     "input": {
       "prompt": "将这张照片变成一个摇头娃娃：头部稍微放大，保持面部准确，身体卡通化。[把它放在书架上]。",
       "image_input": ["https://example.com/your-image.png"],

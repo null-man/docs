@@ -18,7 +18,7 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --data '{
     "model": "google/imagen4-fast",
-    "callBackUrl": "https://your-domain.com/api/callback",
+    "callback_url": "https://your-domain.com/api/callback",
     "input": {
       "prompt": "一幅电影质感的城市夜景，霓虹灯倒映在雨后的街道上，赛博朋克风格，高对比度",
       "negative_prompt": "",
@@ -35,7 +35,7 @@ curl --request POST \
 | 参数                  | 类型   | 必填 | 说明                                    |
 | --------------------- | ------ | ---- | --------------------------------------- |
 | model                 | string | 是   | 模型名称，固定为 `google/imagen4-fast`  |
-| callBackUrl           | string | 否   | 任务完成后的回调地址                    |
+| callback_url          | string | 否   | 任务完成后的回调地址                    |
 | input.prompt          | string | 是   | 图像生成的文字描述                      |
 | input.negative_prompt | string | 否   | 负面提示词，描述不希望出现的内容        |
 | input.aspect_ratio    | string | 否   | 图像宽高比，如 `1:1`、`16:9`、`9:16` 等 |
